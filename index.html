@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html ng-app="JSONedit">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JSON Editor</title>
+    <!--js lib-->
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/jquery-ui.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/sortable.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/jquery.json-view.js"></script>
+    <script src="scripts/angular-file-upload.js"></script>
+    <script src="scripts/angular-route.min.js"></script>
+    <!--css lib-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/myStyle.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquery.json-view.css" rel="stylesheet" />
+
+
+    <!--main js-->
+    <script src="js/app.js"></script>
+
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header" ng-controller="HomeCtrl">
+                <a class="navbar-brand" href="#">{{appTitle}}</a>
+            </div>
+            <ul class="nav navbar-nav" ng-controller="HeaderCtrl">
+                <li ng-class="{ active: isActive('/')}" ><a href="#">Home</a></li>
+                <li ng-class="{ active: isActive('/example')}"><a href="#/example">Example</a></li>
+                <li ng-class="{ active: isActive('/about')}"><a href="#/about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container theme-showcase"  ng-view ></div>
+   
+    <div class="navbar">
+        <hr class="style">
+        <div class="container">
+            <p class="navbar-text pull-left">
+                © 2016 - Site Built By Thuy Le Van - 
+                <a href="#" >4T Company</a>
+            </p>
+
+            <a href="https://github.com/ThuyLeVan/JSONeditor" target="_blank" class="navbar-btn btn-danger btn pull-right">
+                <span class="glyphicon glyphicon-star"></span> View it on GitHub
+            </a>
+        </div>
+   </div>
+</body>
+</html>

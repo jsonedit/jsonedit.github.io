@@ -1,0 +1,102 @@
+﻿<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">INPUT</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div ng-file-drop ng-file-select drag-over-class="dragover" class='dropbox' ng-multiple="false" accept=".txt,.json" ng-model='uploadedFile'>
+                            Drop files here <em>Or</em> click to upload.<br />
+                            <em>(Only support *.txt and *.json file !)</em>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+
+                        <textarea class='form-control animated' id="jsonTextarea" ng-model="jsonString" ng- spellcheck=false></textarea>
+                      
+                       
+                        <div class="alert alert-danger" ng-if="!wellFormed">
+                            <strong>Error !</strong> JSON not well-formed!
+                        </div>
+
+                    </div>
+                </div>
+                <div class="alert alert-info" ng-show="uploadedFile">
+                    File was uploaded: <p ng-repeat='f in uploadedFile'>{{f.name}}</p>
+                </div>
+                <div class="alert alert-danger" id="mess" ng-show="showMess">
+                    <strong>Error !</strong> Please check format of JSON file.
+                </div>
+                <div class="row">
+                    <div class="col-sm-11">
+                        <hr class="style">
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" class="btn btn-primary" style="float:right" data-toggle="modal" data-target="#myModal">
+                            Save <span class="glyphicon glyphicon-download-alt"></span>
+                        </button>
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Save JSON To File</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="alert alert-danger" ng-show="showErrName">
+                                            <strong>Error !</strong> A filename cannot contain any of the following characters:\ / : * ? " < > |
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-8">
+
+                                                File Name <input type="text" class="form-control" ng-model="fileName" placeholder="Enter File Name ..." ng-change="checkName()" ng-init="validFileName = true">
+
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    Format: <select class="form-control" ng-model="fileFormat" ng-init="fileFormat='txt'">
+                                                        <option value="txt">*.txt</option>
+                                                        <option value="json">*.json</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a type="button" class="btn btn-primary" ng-click="savefile()" ng-disabled="validFileName" ng-href="{{ fileUrl1 }}" download="{{fileName1}}">Save</a>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="mainView">
+                    <div class="jsonView">
+                        <json child="jsonData"  default-collapsed="false" type="object"></json>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-heading" style="border-top-left-radius:0 !important;border-top-right-radius:0 !important;">
+                <h3 class="panel-title">OUTPUT</h3>
+            </div>
+            <div class="panel-body" id="result">
+                <div class="panel panel-info">
+                    <div class="panel-heading"> Tree View</div>
+                    <div class="panel-body">
+                        <div id="element"></div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-bottom:200px;"></div>
